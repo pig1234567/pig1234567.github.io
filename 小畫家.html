@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas</title>
+	<script type="text/javascript">
+	     var canvas;
+         var content;
+         var isPaint = false;
+
+         window.onload = function(){
+         	canvas =document.getElementById("myCanvas");
+         	context = canvas.getContext("2d");
+         }
+         function mdh(e){
+           var x = e.clientX;
+           var y = e.clientY;
+           context.beginPath();
+           context.lineWidth = 12;
+           context.strokeStyle = "yellow";
+           context.moveTo(x, y);
+           isPaint = true;
+
+         }	
+         function mmh(e){
+             if(isPaint){
+         	 	var x = e.clientX;
+         	 	var y = e.clientY;
+         	 	context.lineTo(x, y);
+         	 	context.stroke();
+         	 }	
+         }
+         function muh(e){ 
+         	isPaint = false;
+
+         }
+          function clean(e){
+        	context.clearRect(0, 0, canvas.width, canvas.height);
+
+         }	
+ </script>
+</head>
+<body>
+<canvas id="myCanvas" width="900" height="500";
+    onmousedown="mdh(event)"
+    onmousemove="mmh(event)"
+	onmouseup="muh(event)"
+	style="cursor: auto; background: black"></canvas>
+<hr>
+<button onclick="clean()" style="width: 200px">clear</button>
+</body>
+</html>
